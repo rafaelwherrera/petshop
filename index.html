@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetCare - Seu Pet Merece o Melhor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom CSS variables matching our design tokens */
+      :root {
+        --background: #ffffff;
+        --foreground: #4b5563;
+        --card: #fffbeb;
+        --card-foreground: #4b5563;
+        --primary: #ea580c;
+        --primary-foreground: #ffffff;
+        --secondary: #f97316;
+        --secondary-foreground: #ffffff;
+        --muted: #fdf2f8;
+        --muted-foreground: #4b5563;
+        --accent: #f97316;
+        --border: #e5e7eb;
+        --radius: 0.5rem;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-card {
+        background-color: var(--card);
+      }
+      .bg-muted {
+        background-color: var(--muted);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+      .text-card-foreground {
+        color: var(--card-foreground);
+      }
+      .text-primary-foreground {
+        color: var(--primary-foreground);
+      }
+      .border-border {
+        border-color: var(--border);
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+      }
+
+      .service-card {
+        transition: all 0.3s ease;
+        border-radius: var(--radius);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      @media (max-width: 768px) {
+        .hero-text {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-paw text-primary text-2xl"></i>
+            <span class="text-2xl font-bold text-primary">PetCare</span>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#home"
+              class="text-foreground hover:text-primary transition-colors"
+              >Início</a
+            >
+            <a
+              href="#services"
+              class="text-foreground hover:text-primary transition-colors"
+              >Serviços</a
+            >
+            <a
+              href="#about"
+              class="text-foreground hover:text-primary transition-colors"
+              >Sobre</a
+            >
+            <a
+              href="#contact"
+              class="text-foreground hover:text-primary transition-colors"
+              >Contato</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-primary" id="mobile-menu-btn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+          class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
+          id="mobile-menu"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full space-y-8"
+          >
+            <button
+              class="absolute top-4 right-4 text-primary text-2xl"
+              id="close-menu"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <a
+              href="#home"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Início</a
+            >
+            <a
+              href="#services"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Serviços</a
+            >
+            <a
+              href="#about"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Sobre</a
+            >
+            <a
+              href="#contact"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-gradient min-h-screen flex items-center pt-20"
+    >
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h1
+              class="hero-text text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+            >
+              Seu Pet Merece o <span class="text-secondary">Melhor</span>
+            </h1>
+            <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Cuidamos do seu melhor amigo com amor, carinho e profissionalismo.
+              Oferecemos serviços completos para manter seu pet sempre saudável
+              e feliz.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="btn-primary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                Agendar Consulta
+              </button>
+              <button class="btn-secondary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-phone mr-2"></i>
+                Falar Conosco
+              </button>
+            </div>
+          </div>
+          <div class="fade-in">
+            <img
+              src="/placeholder.svg?height=500&width=600"
+              alt="Pets felizes"
+              class="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Nossos Serviços</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Oferecemos uma gama completa de serviços para cuidar da saúde e
+            bem-estar do seu pet
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service Card 1 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-stethoscope"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Consultas Veterinárias
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Consultas completas com veterinários experientes para manter a
+              saúde do seu pet em dia.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-cut"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Banho e Tosa
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Serviços de higiene e estética para deixar seu pet sempre limpo e
+              bonito.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-syringe"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Vacinação
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Programa completo de vacinação para proteger seu pet contra
+              doenças.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+
+          <!-- Service Card 4 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Hotel para Pets
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Hospedagem segura e confortável para quando você precisar viajar.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+
+          <!-- Service Card 5 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Pet Shop
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Produtos de qualidade: ração, brinquedos, acessórios e muito mais.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+
+          <!-- Service Card 6 -->
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-ambulance"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Emergência 24h
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Atendimento de emergência disponível 24 horas para situações
+              urgentes.
+            </p>
+            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-muted">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <img
+              src="/placeholder.svg?height=400&width=500"
+              alt="Nossa equipe"
+              class="w-full h-auto rounded-lg shadow-xl"
+            />
+          </div>
+          <div class="fade-in">
+            <h2 class="text-4xl font-bold text-primary mb-6">
+              Sobre a PetCare
+            </h2>
+            <p class="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Há mais de 15 anos cuidando dos pets com amor e dedicação. Nossa
+              missão é proporcionar o melhor atendimento veterinário e serviços
+              especializados para garantir a saúde e felicidade do seu melhor
+              amigo.
+            </p>
+            <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Contamos com uma equipe de veterinários experientes e apaixonados
+              por animais, equipamentos modernos e um ambiente acolhedor para
+              receber você e seu pet.
+            </p>
+
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-primary mb-2">15+</div>
+                <div class="text-muted-foreground">Anos de Experiência</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-primary mb-2">5000+</div>
+                <div class="text-muted-foreground">Pets Atendidos</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+                <div class="text-muted-foreground">Emergência</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-primary mb-2">100%</div>
+                <div class="text-muted-foreground">Satisfação</div>
+              </div>
+            </div>
+
+            <button class="btn-primary px-8 py-4 text-lg font-semibold">
+              <i class="fas fa-users mr-2"></i>
+              Conheça Nossa Equipe
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Entre em Contato</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Estamos prontos para cuidar do seu pet. Entre em contato conosco!
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div class="fade-in">
+            <form class="space-y-6" id="contact-form">
+              <div>
+                <label class="block text-card-foreground font-semibold mb-2"
+                  >Nome</label
+                >
+                <input
+                  type="text"
+                  class="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Seu nome completo"
+                />
+              </div>
+              <div>
+                <label class="block text-card-foreground font-semibold mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="seu@email.com"
+                />
+              </div>
+              <div>
+                <label class="block text-card-foreground font-semibold mb-2"
+                  >Telefone</label
+                >
+                <input
+                  type="tel"
+                  class="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="(11) 99999-9999"
+                />
+              </div>
+              <div>
+                <label class="block text-card-foreground font-semibold mb-2"
+                  >Mensagem</label
+                >
+                <textarea
+                  rows="5"
+                  class="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Como podemos ajudar você e seu pet?"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-primary w-full py-4 text-lg font-semibold"
+              >
+                <i class="fas fa-paper-plane mr-2"></i>
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="fade-in">
+            <div class="space-y-8">
+              <div class="flex items-start space-x-4">
+                <div class="text-primary text-2xl mt-1">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-card-foreground mb-2">
+                    Endereço
+                  </h3>
+                  <p class="text-muted-foreground">
+                    Rua dos Pets, 123<br />
+                    Bairro Animal - Uberlândia, MG<br />
+                    CEP: 01234-567
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="text-primary text-2xl mt-1">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-card-foreground mb-2">
+                    Telefone
+                  </h3>
+                  <p class="text-muted-foreground">
+                    (34) 3456-7890<br />
+                    (34) 99999-9999 (WhatsApp)
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="text-primary text-2xl mt-1">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-card-foreground mb-2">
+                    Email
+                  </h3>
+                  <p class="text-muted-foreground">
+                    contato@petcare.com.br<br />
+                    emergencia@petcare.com.br
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="text-primary text-2xl mt-1">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-card-foreground mb-2">
+                    Horário de Funcionamento
+                  </h3>
+                  <p class="text-muted-foreground">
+                    Segunda a Sexta: 8h às 18h<br />
+                    Sábado: 8h às 16h<br />
+                    Domingo: 9h às 13h<br />
+                    <span class="text-primary font-semibold"
+                      >Emergência: 24h</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="mt-8">
+              <h3 class="text-xl font-bold text-card-foreground mb-4">
+                Siga-nos
+              </h3>
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="text-primary hover:text-secondary text-2xl transition-colors"
+                >
+                  <i class="fab fa-facebook"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-primary hover:text-secondary text-2xl transition-colors"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-primary hover:text-secondary text-2xl transition-colors"
+                >
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-primary hover:text-secondary text-2xl transition-colors"
+                >
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-paw text-primary text-2xl"></i>
+              <span class="text-2xl font-bold text-primary">PetCare</span>
+            </div>
+            <p class="text-muted-foreground">
+              Cuidando do seu melhor amigo com amor e profissionalismo há mais
+              de 15 anos.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Serviços
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Consultas</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Banho e Tosa</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Vacinação</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Hotel</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Links Úteis
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Dicas</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors">FAQ</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <i class="fas fa-phone mr-2 text-primary"></i>(34) 3456-7890
+              </li>
+              <li>
+                <i class="fas fa-envelope mr-2 text-primary"></i
+                >contato@petcare.com.br
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                Uberândia, MG
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
+        >
+          <p>&copy; 2025 PetCare. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 right-6 btn-primary p-3 rounded-full shadow-lg opacity-0 transition-all duration-300"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Back to top button
+      const backToTopBtn = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.style.opacity = "1";
+          backToTopBtn.style.transform = "translateY(0)";
+        } else {
+          backToTopBtn.style.opacity = "0";
+          backToTopBtn.style.transform = "translateY(10px)";
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Contact form submission
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Simple form validation
+          const inputs = e.target.querySelectorAll("input, textarea");
+          let isValid = true;
+
+          inputs.forEach((input) => {
+            if (!input.value.trim()) {
+              input.style.borderColor = "var(--destructive)";
+              isValid = false;
+            } else {
+              input.style.borderColor = "var(--border)";
+            }
+          });
+
+          if (isValid) {
+            alert(
+              "Mensagem enviada com sucesso! Entraremos em contato em breve."
+            );
+            e.target.reset();
+          } else {
+            alert("Por favor, preencha todos os campos.");
+          }
+        });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for fixed header
+            window.scrollTo({
+              top: offsetTop,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-primary, .btn-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            if (this.type !== "submit") {
+              const originalText = this.innerHTML;
+              this.innerHTML =
+                '<i class="fas fa-spinner fa-spin mr-2"></i>Carregando...';
+              this.disabled = true;
+
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+              }, 2000);
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
