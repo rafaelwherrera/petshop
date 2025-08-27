@@ -132,30 +132,131 @@
           <!-- Logo -->
           <div class="flex items-center space-x-2">
             <i class="fas fa-paw text-primary text-2xl"></i>
-            <a href="index.html" class="text-2xl font-bold text-primary"
-              >PetCare</a
-            >
+            <span class="text-2xl font-bold text-primary">PetCare</span>
           </div>
 
-          <!-- Desktop Navigation -->
+          <!-- Updated desktop navigation with dropdown menus -->
           <div class="hidden md:flex space-x-8">
             <a
-              href="index.html"
+              href="#home"
               class="text-foreground hover:text-primary transition-colors"
               >Início</a
             >
+
+            <!-- Services Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Serviços <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="consultas.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-stethoscope mr-2"></i>Consultas
+                    Veterinárias
+                  </a>
+                  <a
+                    href="banho-tosa.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-cut mr-2"></i>Banho e Tosa
+                  </a>
+                  <a
+                    href="vacinacao.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-syringe mr-2"></i>Vacinação
+                  </a>
+                  <a
+                    href="hotel.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-home mr-2"></i>Hotel para Pets
+                  </a>
+                  <a
+                    href="petshop.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-shopping-cart mr-2"></i>Pet Shop
+                  </a>
+                  <a
+                    href="emergencia.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-ambulance mr-2"></i>Emergência 24h
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- About Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Sobre <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="sobre.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-info-circle mr-2"></i>Sobre Nós
+                  </a>
+                  <a
+                    href="equipe.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-users mr-2"></i>Nossa Equipe
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Recursos <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="blog.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-blog mr-2"></i>Blog
+                  </a>
+                  <a
+                    href="dicas.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-lightbulb mr-2"></i>Dicas
+                  </a>
+                  <a
+                    href="faq.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-question-circle mr-2"></i>FAQ
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <a
-              href="index.html#services"
-              class="text-foreground hover:text-primary transition-colors"
-              >Serviços</a
-            >
-            <a
-              href="sobre.html"
-              class="text-foreground hover:text-primary transition-colors"
-              >Sobre</a
-            >
-            <a
-              href="index.html#contact"
+              href="#contact"
               class="text-foreground hover:text-primary transition-colors"
               >Contato</a
             >
@@ -167,13 +268,13 @@
           </button>
         </div>
 
-        <!-- Mobile Navigation -->
+        <!-- Updated mobile navigation with all pages -->
         <div
           class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
           id="mobile-menu"
         >
           <div
-            class="flex flex-col items-center justify-center h-full space-y-8"
+            class="flex flex-col items-center justify-center h-full space-y-6 px-4"
           >
             <button
               class="absolute top-4 right-4 text-primary text-2xl"
@@ -181,24 +282,92 @@
             >
               <i class="fas fa-times"></i>
             </button>
+
             <a
-              href="index.html"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              href="#home"
+              class="text-xl text-foreground hover:text-primary transition-colors mobile-link"
               >Início</a
             >
+
+            <!-- Mobile Services -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Serviços</h3>
+              <div class="space-y-2">
+                <a
+                  href="consultas.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Consultas</a
+                >
+                <a
+                  href="banho-tosa.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Banho e Tosa</a
+                >
+                <a
+                  href="vacinacao.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Vacinação</a
+                >
+                <a
+                  href="hotel.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Hotel</a
+                >
+                <a
+                  href="petshop.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Pet Shop</a
+                >
+                <a
+                  href="emergencia.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Emergência</a
+                >
+              </div>
+            </div>
+
+            <!-- Mobile About -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Sobre</h3>
+              <div class="space-y-2">
+                <a
+                  href="sobre.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Sobre Nós</a
+                >
+                <a
+                  href="equipe.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Nossa Equipe</a
+                >
+              </div>
+            </div>
+
+            <!-- Mobile Resources -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Recursos</h3>
+              <div class="space-y-2">
+                <a
+                  href="blog.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Blog</a
+                >
+                <a
+                  href="dicas.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Dicas</a
+                >
+                <a
+                  href="faq.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >FAQ</a
+                >
+              </div>
+            </div>
+
             <a
-              href="index.html#services"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
-              >Serviços</a
-            >
-            <a
-              href="sobre.html"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
-              >Sobre</a
-            >
-            <a
-              href="index.html#contact"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              href="#contact"
+              class="text-xl text-foreground hover:text-primary transition-colors mobile-link"
               >Contato</a
             >
           </div>
