@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultas Veterinárias - PetCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom CSS variables matching our design tokens */
+      :root {
+        --background: #ffffff;
+        --foreground: #4b5563;
+        --card: #fffbeb;
+        --card-foreground: #4b5563;
+        --primary: #ea580c;
+        --primary-foreground: #ffffff;
+        --secondary: #f97316;
+        --secondary-foreground: #ffffff;
+        --muted: #fdf2f8;
+        --muted-foreground: #4b5563;
+        --accent: #f97316;
+        --border: #e5e7eb;
+        --radius: 0.5rem;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-card {
+        background-color: var(--card);
+      }
+      .bg-muted {
+        background-color: var(--muted);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+      .text-card-foreground {
+        color: var(--card-foreground);
+      }
+      .text-primary-foreground {
+        color: var(--primary-foreground);
+      }
+      .border-border {
+        border-color: var(--border);
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+      }
+
+      .service-card {
+        transition: all 0.3s ease;
+        border-radius: var(--radius);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-paw text-primary text-2xl"></i>
+            <a href="index.html" class="text-2xl font-bold text-primary"
+              >PetCare</a
+            >
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="index.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-foreground hover:text-primary transition-colors"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-foreground hover:text-primary transition-colors"
+              >Contato</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-primary" id="mobile-menu-btn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+          class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
+          id="mobile-menu"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full space-y-8"
+          >
+            <button
+              class="absolute top-4 right-4 text-primary text-2xl"
+              id="close-menu"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <a
+              href="index.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h1
+              class="text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+            >
+              Consultas <span class="text-secondary">Veterinárias</span>
+            </h1>
+            <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Cuidados veterinários completos com profissionais experientes e
+              equipamentos modernos. Sua tranquilidade e a saúde do seu pet são
+              nossa prioridade.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="btn-primary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                Agendar Consulta
+              </button>
+              <button class="btn-secondary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-phone mr-2"></i>
+                (11) 3456-7890
+              </button>
+            </div>
+          </div>
+          <div class="fade-in">
+            <img
+              src="./public/examinando.jpg"
+              alt="Veterinário examinando pet"
+              class="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Details -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">
+            Nossos Serviços Veterinários
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Oferecemos atendimento veterinário completo com foco na prevenção e
+            tratamento
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Consulta Geral
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Exame clínico completo para avaliação da saúde geral do seu pet.
+            </p>
+            <div class="text-2xl font-bold text-primary">R$ 80</div>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-x-ray"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Exames de Imagem
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Raio-X, ultrassom e outros exames para diagnóstico preciso.
+            </p>
+            <div class="text-2xl font-bold text-primary">
+              A partir de R$ 120
+            </div>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-microscope"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Exames Laboratoriais
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Análises clínicas para diagnóstico e acompanhamento da saúde.
+            </p>
+            <div class="text-2xl font-bold text-primary">A partir de R$ 60</div>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-pills"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Tratamentos
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Medicação e tratamentos personalizados para cada caso.
+            </p>
+            <div class="text-2xl font-bold text-primary">Consulte valores</div>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Consulta Especializada
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Atendimento com veterinários especialistas em diversas áreas.
+            </p>
+            <div class="text-2xl font-bold text-primary">R$ 150</div>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Retorno
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Acompanhamento pós-consulta para garantir a recuperação.
+            </p>
+            <div class="text-2xl font-bold text-primary">R$ 40</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Como Funciona</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Processo simples e eficiente para cuidar da saúde do seu pet
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4"
+            >
+              1
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Agendamento
+            </h3>
+            <p class="text-muted-foreground">
+              Agende sua consulta por telefone ou WhatsApp
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4"
+            >
+              2
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Recepção
+            </h3>
+            <p class="text-muted-foreground">
+              Chegue com 15 minutos de antecedência
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4"
+            >
+              3
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Consulta
+            </h3>
+            <p class="text-muted-foreground">
+              Exame completo com veterinário experiente
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4"
+            >
+              4
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Acompanhamento
+            </h3>
+            <p class="text-muted-foreground">
+              Orientações e agendamento de retorno se necessário
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+      <div class="container mx-auto px-4 text-center">
+        <div class="fade-in">
+          <h2 class="text-4xl font-bold text-primary-foreground mb-4">
+            Agende Sua Consulta Hoje
+          </h2>
+          <p class="text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
+            Nossa equipe está pronta para cuidar da saúde do seu melhor amigo
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="bg-white text-primary px-8 py-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-calendar-alt mr-2"></i>
+              Agendar Online
+            </button>
+            <button
+              class="bg-secondary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <i class="fab fa-whatsapp mr-2"></i>
+              WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-paw text-primary text-2xl"></i>
+              <span class="text-2xl font-bold text-primary">PetCare</span>
+            </div>
+            <p class="text-muted-foreground">
+              Cuidando do seu melhor amigo com amor e profissionalismo há mais
+              de 15 anos.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Serviços
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="consultas.html"
+                  class="hover:text-primary transition-colors"
+                  >Consultas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="banho-tosa.html"
+                  class="hover:text-primary transition-colors"
+                  >Banho e Tosa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="vacinacao.html"
+                  class="hover:text-primary transition-colors"
+                  >Vacinação</a
+                >
+              </li>
+              <li>
+                <a
+                  href="hotel.html"
+                  class="hover:text-primary transition-colors"
+                  >Hotel</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Links Úteis
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="sobre.html"
+                  class="hover:text-primary transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="blog.html" class="hover:text-primary transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dicas.html"
+                  class="hover:text-primary transition-colors"
+                  >Dicas</a
+                >
+              </li>
+              <li>
+                <a href="faq.html" class="hover:text-primary transition-colors"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <i class="fas fa-phone mr-2 text-primary"></i>(11) 3456-7890
+              </li>
+              <li>
+                <i class="fas fa-envelope mr-2 text-primary"></i
+                >contato@petcare.com.br
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>São
+                Paulo, SP
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
+        >
+          <p>&copy; 2024 PetCare. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-primary, .btn-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const originalText = this.innerHTML;
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Carregando...';
+            this.disabled = true;
+
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+          });
+        });
+    </script>
+  </body>
+</html>

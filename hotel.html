@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel para Pets - PetCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #4b5563;
+        --card: #fffbeb;
+        --card-foreground: #4b5563;
+        --primary: #ea580c;
+        --primary-foreground: #ffffff;
+        --secondary: #f97316;
+        --secondary-foreground: #ffffff;
+        --muted: #fdf2f8;
+        --muted-foreground: #4b5563;
+        --accent: #f97316;
+        --border: #e5e7eb;
+        --radius: 0.5rem;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-card {
+        background-color: var(--card);
+      }
+      .bg-muted {
+        background-color: var(--muted);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+      .text-card-foreground {
+        color: var(--card-foreground);
+      }
+      .text-primary-foreground {
+        color: var(--primary-foreground);
+      }
+      .border-border {
+        border-color: var(--border);
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+      }
+
+      .service-card {
+        transition: all 0.3s ease;
+        border-radius: var(--radius);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-paw text-primary text-2xl"></i>
+            <a href="index.html" class="text-2xl font-bold text-primary"
+              >PetCare</a
+            >
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="index.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-foreground hover:text-primary transition-colors"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-foreground hover:text-primary transition-colors"
+              >Contato</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-primary" id="mobile-menu-btn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+          class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
+          id="mobile-menu"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full space-y-8"
+          >
+            <button
+              class="absolute top-4 right-4 text-primary text-2xl"
+              id="close-menu"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <a
+              href="index.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h1
+              class="text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+            >
+              Hotel para <span class="text-secondary">Pets</span>
+            </h1>
+            <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Hospedagem segura e confortável para seu pet quando você precisar
+              viajar. Ambiente acolhedor com cuidados especializados 24 horas
+              por dia.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="btn-primary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                Fazer Reserva
+              </button>
+              <button class="btn-secondary px-8 py-4 text-lg font-semibold">
+                <i class="fas fa-camera mr-2"></i>
+                Ver Instalações
+              </button>
+            </div>
+          </div>
+          <div class="fade-in">
+            <img
+              src="./public/hoterl.jpg"
+              alt="Hotel para pets"
+              class="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">
+            Nossos Planos de Hospedagem
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Diferentes opções para atender as necessidades do seu pet
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-bed"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Hospedagem Básica
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Acomodação confortável com alimentação, passeios e cuidados
+              básicos.
+            </p>
+            <div class="text-3xl font-bold text-primary mb-4">R$ 45/dia</div>
+            <ul class="text-left text-muted-foreground space-y-2 mb-6">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Acomodação
+                individual
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>3 refeições por
+                dia
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>2 passeios diários
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Supervisão 24h
+              </li>
+            </ul>
+            <button class="btn-primary w-full py-3">Reservar</button>
+          </div>
+
+          <div
+            class="service-card bg-card p-8 text-center fade-in border-2 border-primary"
+          >
+            <div
+              class="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold mb-4"
+            >
+              MAIS POPULAR
+            </div>
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Hospedagem Premium
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              Acomodação de luxo com atividades extras e cuidados especiais.
+            </p>
+            <div class="text-3xl font-bold text-primary mb-4">R$ 75/dia</div>
+            <ul class="text-left text-muted-foreground space-y-2 mb-6">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Suíte individual
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Alimentação
+                premium
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>4 passeios diários
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Atividades
+                recreativas
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Banho semanal
+              </li>
+            </ul>
+            <button class="btn-primary w-full py-3">Reservar</button>
+          </div>
+
+          <div class="service-card bg-card p-8 text-center fade-in">
+            <div class="text-primary text-5xl mb-6">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-card-foreground mb-4">
+              Hospedagem VIP
+            </h3>
+            <p class="text-muted-foreground mb-6">
+              O máximo em conforto e cuidados personalizados para seu pet.
+            </p>
+            <div class="text-3xl font-bold text-primary mb-4">R$ 120/dia</div>
+            <ul class="text-left text-muted-foreground space-y-2 mb-6">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Suíte de luxo
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Cardápio
+                personalizado
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Passeios
+                ilimitados
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Cuidador exclusivo
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Relatórios diários
+              </li>
+            </ul>
+            <button class="btn-primary w-full py-3">Reservar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">
+            Nossas Instalações
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Ambiente seguro e confortável pensado especialmente para o bem-estar
+            dos pets
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-home"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Suítes Climatizadas
+            </h3>
+            <p class="text-muted-foreground">
+              Ambientes confortáveis com temperatura controlada
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-tree"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Área de Recreação
+            </h3>
+            <p class="text-muted-foreground">
+              Espaços amplos para brincadeiras e exercícios
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Segurança 24h
+            </h3>
+            <p class="text-muted-foreground">
+              Monitoramento constante e sistema de segurança
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-user-md"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Veterinário
+            </h3>
+            <p class="text-muted-foreground">
+              Acompanhamento veterinário disponível
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+      <div class="container mx-auto px-4 text-center">
+        <div class="fade-in">
+          <h2 class="text-4xl font-bold text-primary-foreground mb-4">
+            Reserve Já a Hospedagem
+          </h2>
+          <p class="text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
+            Garante tranquilidade na sua viagem sabendo que seu pet está em boas
+            mãos
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="bg-white text-primary px-8 py-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-calendar-alt mr-2"></i>
+              Fazer Reserva
+            </button>
+            <button
+              class="bg-secondary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <i class="fas fa-phone mr-2"></i>
+              Falar Conosco
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-paw text-primary text-2xl"></i>
+              <span class="text-2xl font-bold text-primary">PetCare</span>
+            </div>
+            <p class="text-muted-foreground">
+              Cuidando do seu melhor amigo com amor e profissionalismo há mais
+              de 15 anos.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Serviços
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="consultas.html"
+                  class="hover:text-primary transition-colors"
+                  >Consultas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="banho-tosa.html"
+                  class="hover:text-primary transition-colors"
+                  >Banho e Tosa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="vacinacao.html"
+                  class="hover:text-primary transition-colors"
+                  >Vacinação</a
+                >
+              </li>
+              <li>
+                <a
+                  href="hotel.html"
+                  class="hover:text-primary transition-colors"
+                  >Hotel</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Links Úteis
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="sobre.html"
+                  class="hover:text-primary transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="blog.html" class="hover:text-primary transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dicas.html"
+                  class="hover:text-primary transition-colors"
+                  >Dicas</a
+                >
+              </li>
+              <li>
+                <a href="faq.html" class="hover:text-primary transition-colors"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <i class="fas fa-phone mr-2 text-primary"></i>(11) 3456-7890
+              </li>
+              <li>
+                <i class="fas fa-envelope mr-2 text-primary"></i
+                >contato@petcare.com.br
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>São
+                Paulo, SP
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
+        >
+          <p>&copy; 2024 PetCare. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-primary, .btn-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const originalText = this.innerHTML;
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Carregando...';
+            this.disabled = true;
+
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+          });
+        });
+    </script>
+  </body>
+</html>

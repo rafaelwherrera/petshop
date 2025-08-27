@@ -141,23 +141,126 @@
             <span class="text-2xl font-bold text-primary">PetCare</span>
           </div>
 
-          <!-- Desktop Navigation -->
+          <!-- Updated desktop navigation with dropdown menus -->
           <div class="hidden md:flex space-x-8">
             <a
               href="#home"
               class="text-foreground hover:text-primary transition-colors"
               >Início</a
             >
-            <a
-              href="#services"
-              class="text-foreground hover:text-primary transition-colors"
-              >Serviços</a
-            >
-            <a
-              href="#about"
-              class="text-foreground hover:text-primary transition-colors"
-              >Sobre</a
-            >
+
+            <!-- Services Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Serviços <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="consultas.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-stethoscope mr-2"></i>Consultas
+                    Veterinárias
+                  </a>
+                  <a
+                    href="banho-tosa.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-cut mr-2"></i>Banho e Tosa
+                  </a>
+                  <a
+                    href="vacinacao.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-syringe mr-2"></i>Vacinação
+                  </a>
+                  <a
+                    href="hotel.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-home mr-2"></i>Hotel para Pets
+                  </a>
+                  <a
+                    href="petshop.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-shopping-cart mr-2"></i>Pet Shop
+                  </a>
+                  <a
+                    href="emergencia.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-ambulance mr-2"></i>Emergência 24h
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- About Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Sobre <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="sobre.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-info-circle mr-2"></i>Sobre Nós
+                  </a>
+                  <a
+                    href="equipe.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-users mr-2"></i>Nossa Equipe
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="relative group">
+              <button
+                class="text-foreground hover:text-primary transition-colors flex items-center"
+              >
+                Recursos <i class="fas fa-chevron-down ml-1 text-sm"></i>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <div class="py-2">
+                  <a
+                    href="blog.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-blog mr-2"></i>Blog
+                  </a>
+                  <a
+                    href="dicas.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-lightbulb mr-2"></i>Dicas
+                  </a>
+                  <a
+                    href="faq.html"
+                    class="block px-4 py-2 text-foreground hover:bg-card hover:text-primary transition-colors"
+                  >
+                    <i class="fas fa-question-circle mr-2"></i>FAQ
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <a
               href="#contact"
               class="text-foreground hover:text-primary transition-colors"
@@ -171,13 +274,13 @@
           </button>
         </div>
 
-        <!-- Mobile Navigation -->
+        <!-- Updated mobile navigation with all pages -->
         <div
           class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
           id="mobile-menu"
         >
           <div
-            class="flex flex-col items-center justify-center h-full space-y-8"
+            class="flex flex-col items-center justify-center h-full space-y-6 px-4"
           >
             <button
               class="absolute top-4 right-4 text-primary text-2xl"
@@ -185,24 +288,92 @@
             >
               <i class="fas fa-times"></i>
             </button>
+
             <a
               href="#home"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              class="text-xl text-foreground hover:text-primary transition-colors mobile-link"
               >Início</a
             >
-            <a
-              href="#services"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
-              >Serviços</a
-            >
-            <a
-              href="#about"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
-              >Sobre</a
-            >
+
+            <!-- Mobile Services -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Serviços</h3>
+              <div class="space-y-2">
+                <a
+                  href="consultas.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Consultas</a
+                >
+                <a
+                  href="banho-tosa.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Banho e Tosa</a
+                >
+                <a
+                  href="vacinacao.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Vacinação</a
+                >
+                <a
+                  href="hotel.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Hotel</a
+                >
+                <a
+                  href="petshop.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Pet Shop</a
+                >
+                <a
+                  href="emergencia.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Emergência</a
+                >
+              </div>
+            </div>
+
+            <!-- Mobile About -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Sobre</h3>
+              <div class="space-y-2">
+                <a
+                  href="sobre.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Sobre Nós</a
+                >
+                <a
+                  href="equipe.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Nossa Equipe</a
+                >
+              </div>
+            </div>
+
+            <!-- Mobile Resources -->
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-primary mb-3">Recursos</h3>
+              <div class="space-y-2">
+                <a
+                  href="blog.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Blog</a
+                >
+                <a
+                  href="dicas.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >Dicas</a
+                >
+                <a
+                  href="faq.html"
+                  class="block text-foreground hover:text-primary transition-colors mobile-link"
+                  >FAQ</a
+                >
+              </div>
+            </div>
+
             <a
               href="#contact"
-              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              class="text-xl text-foreground hover:text-primary transition-colors mobile-link"
               >Contato</a
             >
           </div>
@@ -241,9 +412,9 @@
           </div>
           <div class="fade-in">
             <img
-              src="/placeholder.svg?height=500&width=600"
+              src="./public/petfelizes.png"
               alt="Pets felizes"
-              class="w-full h-auto rounded-lg shadow-2xl"
+              class="h-auto rounded-lg"
             />
           </div>
         </div>
@@ -262,7 +433,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Service Card 1 -->
+          <!-- Updated service cards with links to individual pages -->
           <div class="service-card bg-card p-8 text-center fade-in">
             <div class="text-primary text-5xl mb-6">
               <i class="fas fa-stethoscope"></i>
@@ -274,7 +445,9 @@
               Consultas completas com veterinários experientes para manter a
               saúde do seu pet em dia.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="consultas.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
 
           <!-- Service Card 2 -->
@@ -289,7 +462,9 @@
               Serviços de higiene e estética para deixar seu pet sempre limpo e
               bonito.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="banho-tosa.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
 
           <!-- Service Card 3 -->
@@ -304,7 +479,9 @@
               Programa completo de vacinação para proteger seu pet contra
               doenças.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="vacinacao.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
 
           <!-- Service Card 4 -->
@@ -318,7 +495,9 @@
             <p class="text-muted-foreground mb-6">
               Hospedagem segura e confortável para quando você precisar viajar.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="hotel.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
 
           <!-- Service Card 5 -->
@@ -332,7 +511,9 @@
             <p class="text-muted-foreground mb-6">
               Produtos de qualidade: ração, brinquedos, acessórios e muito mais.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="petshop.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
 
           <!-- Service Card 6 -->
@@ -347,7 +528,9 @@
               Atendimento de emergência disponível 24 horas para situações
               urgentes.
             </p>
-            <button class="btn-primary px-6 py-3">Saiba Mais</button>
+            <a href="emergencia.html" class="btn-primary px-6 py-3 inline-block"
+              >Saiba Mais</a
+            >
           </div>
         </div>
       </div>
@@ -359,7 +542,7 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="fade-in">
             <img
-              src="/placeholder.svg?height=400&width=500"
+              src="./public/equipe.jpg"
               alt="Nossa equipe"
               class="w-full h-auto rounded-lg shadow-xl"
             />
@@ -399,10 +582,13 @@
               </div>
             </div>
 
-            <button class="btn-primary px-8 py-4 text-lg font-semibold">
+            <a
+              href="equipe.html"
+              class="btn-primary px-8 py-4 text-lg font-semibold flex items-center"
+            >
               <i class="fas fa-users mr-2"></i>
               Conheça Nossa Equipe
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -485,7 +671,7 @@
                   </h3>
                   <p class="text-muted-foreground">
                     Rua dos Pets, 123<br />
-                    Bairro Animal - Uberlândia, MG<br />
+                    Bairro Animal - São Paulo, SP<br />
                     CEP: 01234-567
                   </p>
                 </div>
@@ -500,8 +686,8 @@
                     Telefone
                   </h3>
                   <p class="text-muted-foreground">
-                    (34) 3456-7890<br />
-                    (34) 99999-9999 (WhatsApp)
+                    (11) 3456-7890<br />
+                    (11) 99999-9999 (WhatsApp)
                   </p>
                 </div>
               </div>
@@ -599,22 +785,30 @@
             </h4>
             <ul class="space-y-2 text-muted-foreground">
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="consultas.html"
+                  class="hover:text-primary transition-colors"
                   >Consultas</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="banho-tosa.html"
+                  class="hover:text-primary transition-colors"
                   >Banho e Tosa</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="vacinacao.html"
+                  class="hover:text-primary transition-colors"
                   >Vacinação</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="hotel.html"
+                  class="hover:text-primary transition-colors"
                   >Hotel</a
                 >
               </li>
@@ -627,22 +821,28 @@
             </h4>
             <ul class="space-y-2 text-muted-foreground">
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="sobre.html"
+                  class="hover:text-primary transition-colors"
                   >Sobre Nós</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a href="blog.html" class="hover:text-primary transition-colors"
                   >Blog</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors"
+                <a
+                  href="dicas.html"
+                  class="hover:text-primary transition-colors"
                   >Dicas</a
                 >
               </li>
               <li>
-                <a href="#" class="hover:text-primary transition-colors">FAQ</a>
+                <a href="faq.html" class="hover:text-primary transition-colors"
+                  >FAQ</a
+                >
               </li>
             </ul>
           </div>
@@ -651,15 +851,15 @@
             <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
             <ul class="space-y-2 text-muted-foreground">
               <li>
-                <i class="fas fa-phone mr-2 text-primary"></i>(34) 3456-7890
+                <i class="fas fa-phone mr-2 text-primary"></i>(11) 3456-7890
               </li>
               <li>
                 <i class="fas fa-envelope mr-2 text-primary"></i
                 >contato@petcare.com.br
               </li>
               <li>
-                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
-                Uberândia, MG
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>São
+                Paulo, SP
               </li>
             </ul>
           </div>
@@ -668,7 +868,7 @@
         <div
           class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
         >
-          <p>&copy; 2025 PetCare. Todos os direitos reservados.</p>
+          <p>&copy; 2024 PetCare. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

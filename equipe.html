@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nossa Equipe - PetCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #4b5563;
+        --card: #fffbeb;
+        --card-foreground: #4b5563;
+        --primary: #ea580c;
+        --primary-foreground: #ffffff;
+        --secondary: #f97316;
+        --secondary-foreground: #ffffff;
+        --muted: #fdf2f8;
+        --muted-foreground: #4b5563;
+        --accent: #f97316;
+        --border: #e5e7eb;
+        --radius: 0.5rem;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-card {
+        background-color: var(--card);
+      }
+      .bg-muted {
+        background-color: var(--muted);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+      .text-card-foreground {
+        color: var(--card-foreground);
+      }
+      .text-primary-foreground {
+        color: var(--primary-foreground);
+      }
+      .border-border {
+        border-color: var(--border);
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+      }
+
+      .team-card {
+        transition: all 0.3s ease;
+        border-radius: var(--radius);
+      }
+
+      .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-paw text-primary text-2xl"></i>
+            <a href="index.html" class="text-2xl font-bold text-primary"
+              >PetCare</a
+            >
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="index.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-foreground hover:text-primary transition-colors"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-foreground hover:text-primary transition-colors"
+              >Contato</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-primary" id="mobile-menu-btn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+          class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
+          id="mobile-menu"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full space-y-8"
+          >
+            <button
+              class="absolute top-4 right-4 text-primary text-2xl"
+              id="close-menu"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <a
+              href="index.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center fade-in">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+          >
+            Nossa <span class="text-secondary">Equipe</span>
+          </h1>
+          <p
+            class="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            Conheça os profissionais apaixonados por animais que cuidam do seu
+            pet com dedicação, carinho e toda a expertise que ele merece.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Veterinários</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Profissionais experientes e especializados em diferentes áreas
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dr. Carlos Silva"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dr. Carlos Silva
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Veterinário Geral - CRMV 12345
+            </p>
+            <p class="text-muted-foreground mb-6">
+              15 anos de experiência em clínica geral e cirurgias. Especialista
+              em medicina preventiva e cuidados geriátricos.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dra. Ana Costa"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dra. Ana Costa
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Dermatologista - CRMV 23456
+            </p>
+            <p class="text-muted-foreground mb-6">
+              Especialista em dermatologia veterinária com mestrado em doenças
+              de pele. Atende casos complexos de alergias e infecções.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dr. Roberto Lima"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dr. Roberto Lima
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Cirurgião - CRMV 34567
+            </p>
+            <p class="text-muted-foreground mb-6">
+              Cirurgião veterinário com especialização em ortopedia e
+              neurocirurgia. Mais de 1000 cirurgias realizadas com sucesso.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dra. Mariana Santos"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dra. Mariana Santos
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Cardiologista - CRMV 45678
+            </p>
+            <p class="text-muted-foreground mb-6">
+              Especialista em cardiologia veterinária e medicina intensiva.
+              Responsável pelo setor de emergência e UTI.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dr. Paulo Oliveira"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dr. Paulo Oliveira
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Oftalmologista - CRMV 56789
+            </p>
+            <p class="text-muted-foreground mb-6">
+              Especialista em oftalmologia veterinária. Realiza cirurgias de
+              catarata e tratamentos de doenças oculares complexas.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card bg-card p-8 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Dra. Fernanda Rocha"
+              class="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+            />
+            <h3 class="text-2xl font-bold text-card-foreground mb-2">
+              Dra. Fernanda Rocha
+            </h3>
+            <p class="text-primary font-semibold mb-4">
+              Oncologista - CRMV 67890
+            </p>
+            <p class="text-muted-foreground mb-6">
+              Especialista em oncologia veterinária. Dedica-se ao tratamento de
+              câncer em pets com abordagem humanizada e moderna.
+            </p>
+            <div class="flex justify-center space-x-4">
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary">
+                <i class="fas fa-envelope text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Team -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Equipe de Apoio</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Profissionais dedicados que garantem o melhor atendimento
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="team-card bg-white p-6 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=150&width=150"
+              alt="Julia Mendes"
+              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Julia Mendes
+            </h3>
+            <p class="text-primary font-semibold mb-2">Auxiliar Veterinária</p>
+            <p class="text-muted-foreground text-sm">
+              Técnica em veterinária com 8 anos de experiência em procedimentos
+              e cuidados.
+            </p>
+          </div>
+
+          <div class="team-card bg-white p-6 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=150&width=150"
+              alt="Ricardo Alves"
+              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Ricardo Alves
+            </h3>
+            <p class="text-primary font-semibold mb-2">Tosador Profissional</p>
+            <p class="text-muted-foreground text-sm">
+              Especialista em tosa e estética animal com certificação
+              internacional.
+            </p>
+          </div>
+
+          <div class="team-card bg-white p-6 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=150&width=150"
+              alt="Camila Torres"
+              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Camila Torres
+            </h3>
+            <p class="text-primary font-semibold mb-2">Recepcionista</p>
+            <p class="text-muted-foreground text-sm">
+              Responsável pelo atendimento e agendamentos, sempre com um
+              sorriso.
+            </p>
+          </div>
+
+          <div class="team-card bg-white p-6 text-center fade-in">
+            <img
+              src="/placeholder.svg?height=150&width=150"
+              alt="Diego Ferreira"
+              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Diego Ferreira
+            </h3>
+            <p class="text-primary font-semibold mb-2">Cuidador Hotel</p>
+            <p class="text-muted-foreground text-sm">
+              Especialista em comportamento animal, cuida dos pets no hotel com
+              carinho.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Nossos Valores</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            O que nos move todos os dias no cuidado com os pets
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Amor pelos Animais
+            </h3>
+            <p class="text-muted-foreground">
+              Cada pet é tratado com carinho e respeito, como se fosse nosso
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Excelência Técnica
+            </h3>
+            <p class="text-muted-foreground">
+              Formação continuada e equipamentos modernos para o melhor
+              tratamento
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Transparência
+            </h3>
+            <p class="text-muted-foreground">
+              Comunicação clara sobre diagnósticos, tratamentos e custos
+            </p>
+          </div>
+
+          <div class="text-center fade-in">
+            <div
+              class="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"
+            >
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-2">
+              Disponibilidade
+            </h3>
+            <p class="text-muted-foreground">
+              Sempre prontos para atender quando seu pet mais precisa
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+      <div class="container mx-auto px-4 text-center">
+        <div class="fade-in">
+          <h2 class="text-4xl font-bold text-primary-foreground mb-4">
+            Conheça Nossa Clínica
+          </h2>
+          <p class="text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
+            Venha conhecer pessoalmente nossa equipe e nossas instalações
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="bg-white text-primary px-8 py-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-calendar-alt mr-2"></i>
+              Agendar Visita
+            </button>
+            <button
+              class="bg-secondary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <i class="fas fa-phone mr-2"></i>
+              Falar Conosco
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-paw text-primary text-2xl"></i>
+              <span class="text-2xl font-bold text-primary">PetCare</span>
+            </div>
+            <p class="text-muted-foreground">
+              Cuidando do seu melhor amigo com amor e profissionalismo há mais
+              de 15 anos.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Serviços
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="consultas.html"
+                  class="hover:text-primary transition-colors"
+                  >Consultas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="banho-tosa.html"
+                  class="hover:text-primary transition-colors"
+                  >Banho e Tosa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="vacinacao.html"
+                  class="hover:text-primary transition-colors"
+                  >Vacinação</a
+                >
+              </li>
+              <li>
+                <a
+                  href="hotel.html"
+                  class="hover:text-primary transition-colors"
+                  >Hotel</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Links Úteis
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="sobre.html"
+                  class="hover:text-primary transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="blog.html" class="hover:text-primary transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dicas.html"
+                  class="hover:text-primary transition-colors"
+                  >Dicas</a
+                >
+              </li>
+              <li>
+                <a href="faq.html" class="hover:text-primary transition-colors"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <i class="fas fa-phone mr-2 text-primary"></i>(11) 3456-7890
+              </li>
+              <li>
+                <i class="fas fa-envelope mr-2 text-primary"></i
+                >contato@petcare.com.br
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>São
+                Paulo, SP
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
+        >
+          <p>&copy; 2024 PetCare. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-primary, .btn-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const originalText = this.innerHTML;
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Carregando...';
+            this.disabled = true;
+
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+          });
+        });
+    </script>
+  </body>
+</html>

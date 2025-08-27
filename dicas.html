@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dicas - PetCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #4b5563;
+        --card: #fffbeb;
+        --card-foreground: #4b5563;
+        --primary: #ea580c;
+        --primary-foreground: #ffffff;
+        --secondary: #f97316;
+        --secondary-foreground: #ffffff;
+        --muted: #fdf2f8;
+        --muted-foreground: #4b5563;
+        --accent: #f97316;
+        --border: #e5e7eb;
+        --radius: 0.5rem;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .bg-secondary {
+        background-color: var(--secondary);
+      }
+      .bg-card {
+        background-color: var(--card);
+      }
+      .bg-muted {
+        background-color: var(--muted);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
+      .text-card-foreground {
+        color: var(--card-foreground);
+      }
+      .text-primary-foreground {
+        color: var(--primary-foreground);
+      }
+      .border-border {
+        border-color: var(--border);
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+      }
+
+      .tip-card {
+        transition: all 0.3s ease;
+        border-radius: var(--radius);
+      }
+
+      .tip-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      .tip-number {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-paw text-primary text-2xl"></i>
+            <a href="index.html" class="text-2xl font-bold text-primary"
+              >PetCare</a
+            >
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="index.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-foreground hover:text-primary transition-colors"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-foreground hover:text-primary transition-colors"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-foreground hover:text-primary transition-colors"
+              >Contato</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-primary" id="mobile-menu-btn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+          class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-40 md:hidden"
+          id="mobile-menu"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full space-y-8"
+          >
+            <button
+              class="absolute top-4 right-4 text-primary text-2xl"
+              id="close-menu"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <a
+              href="index.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Início</a
+            >
+            <a
+              href="index.html#services"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Serviços</a
+            >
+            <a
+              href="sobre.html"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Sobre</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-2xl text-foreground hover:text-primary transition-colors mobile-link"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center fade-in">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+          >
+            Dicas <span class="text-secondary">Essenciais</span>
+          </h1>
+          <p
+            class="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            Guias práticos e dicas valiosas para cuidar melhor do seu pet no dia
+            a dia. Conselhos diretos dos nossos veterinários especialistas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Care Tips -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Cuidados Diários</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Rotinas essenciais para manter seu pet saudável e feliz
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="tip-card bg-card p-8 fade-in">
+            <div class="flex items-start space-x-4">
+              <div class="tip-number">1</div>
+              <div>
+                <h3 class="text-2xl font-bold text-card-foreground mb-4">
+                  Alimentação Regular
+                </h3>
+                <ul class="space-y-2 text-muted-foreground">
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Mantenha
+                    horários fixos para as refeições
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Use ração de
+                    qualidade adequada à idade
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Controle a
+                    quantidade conforme o peso
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Sempre deixe
+                    água fresca disponível
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-card bg-card p-8 fade-in">
+            <div class="flex items-start space-x-4">
+              <div class="tip-number">2</div>
+              <div>
+                <h3 class="text-2xl font-bold text-card-foreground mb-4">
+                  Exercícios Diários
+                </h3>
+                <ul class="space-y-2 text-muted-foreground">
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Passeios
+                    regulares para cães
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Brincadeiras
+                    interativas para gatos
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Adapte a
+                    intensidade à idade do pet
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Varie as
+                    atividades para evitar tédio
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-card bg-card p-8 fade-in">
+            <div class="flex items-start space-x-4">
+              <div class="tip-number">3</div>
+              <div>
+                <h3 class="text-2xl font-bold text-card-foreground mb-4">
+                  Higiene Básica
+                </h3>
+                <ul class="space-y-2 text-muted-foreground">
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Escove os
+                    pelos regularmente
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Limpe orelhas
+                    semanalmente
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Corte as unhas
+                    quando necessário
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Escove os
+                    dentes 2-3 vezes por semana
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-card bg-card p-8 fade-in">
+            <div class="flex items-start space-x-4">
+              <div class="tip-number">4</div>
+              <div>
+                <h3 class="text-2xl font-bold text-card-foreground mb-4">
+                  Observação Constante
+                </h3>
+                <ul class="space-y-2 text-muted-foreground">
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Monitore
+                    mudanças no comportamento
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Observe
+                    apetite e sede
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Verifique
+                    fezes e urina regularmente
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-primary mr-2"></i>Procure
+                    veterinário se notar algo estranho
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Health Tips -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">Dicas de Saúde</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Prevenção é sempre o melhor remédio
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="tip-card bg-white p-6 text-center fade-in">
+            <div class="text-primary text-4xl mb-4">
+              <i class="fas fa-syringe"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">
+              Vacinação em Dia
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Mantenha o calendário de vacinas sempre atualizado. É a melhor
+              proteção contra doenças graves.
+            </p>
+            <button
+              class="text-primary font-semibold hover:text-secondary transition-colors"
+            >
+              Ver calendário <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+
+          <div class="tip-card bg-white p-6 text-center fade-in">
+            <div class="text-primary text-4xl mb-4">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">
+              Controle de Parasitas
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Use vermífugos e antipulgas regularmente. Proteja seu pet de
+              parasitas internos e externos.
+            </p>
+            <button
+              class="text-primary font-semibold hover:text-secondary transition-colors"
+            >
+              Saiba mais <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+
+          <div class="tip-card bg-white p-6 text-center fade-in">
+            <div class="text-primary text-4xl mb-4">
+              <i class="fas fa-stethoscope"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">
+              Check-ups Regulares
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Consultas preventivas ajudam a detectar problemas precocemente e
+              manter a saúde em dia.
+            </p>
+            <button
+              class="text-primary font-semibold hover:text-secondary transition-colors"
+            >
+              Agendar <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seasonal Tips -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-primary mb-4">
+            Cuidados Sazonais
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Adapte os cuidados conforme a estação do ano
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="tip-card bg-card p-6 text-center fade-in">
+            <div class="text-primary text-3xl mb-4">
+              <i class="fas fa-sun"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">Verão</h3>
+            <ul class="text-left text-muted-foreground space-y-2">
+              <li>• Evite passeios no calor</li>
+              <li>• Mantenha sempre hidratado</li>
+              <li>• Proteja do sol excessivo</li>
+              <li>• Cuidado com queimaduras</li>
+            </ul>
+          </div>
+
+          <div class="tip-card bg-card p-6 text-center fade-in">
+            <div class="text-primary text-3xl mb-4">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">Outono</h3>
+            <ul class="text-left text-muted-foreground space-y-2">
+              <li>• Prepare para mudança de pelo</li>
+              <li>• Escove mais frequentemente</li>
+              <li>• Ajuste a alimentação</li>
+              <li>• Mantenha ambiente aquecido</li>
+            </ul>
+          </div>
+
+          <div class="tip-card bg-card p-6 text-center fade-in">
+            <div class="text-primary text-3xl mb-4">
+              <i class="fas fa-snowflake"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">Inverno</h3>
+            <ul class="text-left text-muted-foreground space-y-2">
+              <li>• Use roupinhas se necessário</li>
+              <li>• Proteja patas do frio</li>
+              <li>• Mantenha ambiente aquecido</li>
+              <li>• Hidrate a pele ressecada</li>
+            </ul>
+          </div>
+
+          <div class="tip-card bg-card p-6 text-center fade-in">
+            <div class="text-primary text-3xl mb-4">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">
+              Primavera
+            </h3>
+            <ul class="text-left text-muted-foreground space-y-2">
+              <li>• Cuidado com alergias</li>
+              <li>• Aumente atividades ao ar livre</li>
+              <li>• Reforce controle de pulgas</li>
+              <li>• Faça check-up preventivo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Tips -->
+    <section class="py-20 bg-red-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold text-red-600 mb-4">
+            Dicas de Emergência
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            O que fazer em situações de urgência
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+              <div class="flex items-center mb-4">
+                <div
+                  class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="text-xl font-bold text-card-foreground">
+                  Intoxicação
+                </h3>
+              </div>
+              <ul class="space-y-2 text-muted-foreground">
+                <li>• NÃO induza vômito sem orientação</li>
+                <li>• Ligue imediatamente para emergência</li>
+                <li>• Leve a embalagem do produto</li>
+                <li>• Mantenha o pet calmo</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+              <div class="flex items-center mb-4">
+                <div
+                  class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3 class="text-xl font-bold text-card-foreground">
+                  Dificuldade Respiratória
+                </h3>
+              </div>
+              <ul class="space-y-2 text-muted-foreground">
+                <li>• Mantenha o pet em local arejado</li>
+                <li>• Não force atividades</li>
+                <li>• Procure atendimento imediato</li>
+                <li>• Observe cor das gengivas</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+              <div class="flex items-center mb-4">
+                <div
+                  class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-bone"></i>
+                </div>
+                <h3 class="text-xl font-bold text-card-foreground">Fraturas</h3>
+              </div>
+              <ul class="space-y-2 text-muted-foreground">
+                <li>• NÃO mova o pet desnecessariamente</li>
+                <li>• Use tábua ou cobertor para transporte</li>
+                <li>• Mantenha o pet aquecido</li>
+                <li>• Procure veterinário urgente</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+              <div class="flex items-center mb-4">
+                <div
+                  class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-tint"></i>
+                </div>
+                <h3 class="text-xl font-bold text-card-foreground">
+                  Hemorragias
+                </h3>
+              </div>
+              <ul class="space-y-2 text-muted-foreground">
+                <li>• Pressione o local com pano limpo</li>
+                <li>• Mantenha pressão constante</li>
+                <li>• Eleve o membro se possível</li>
+                <li>• Procure atendimento imediato</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="text-center mt-8 fade-in">
+            <div class="bg-red-600 text-white p-6 rounded-lg">
+              <h3 class="text-2xl font-bold mb-2">EMERGÊNCIA 24H</h3>
+              <p class="text-xl mb-4">(11) 99999-0000</p>
+              <p>Em caso de emergência, ligue imediatamente!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+      <div class="container mx-auto px-4 text-center">
+        <div class="fade-in">
+          <h2 class="text-4xl font-bold text-primary-foreground mb-4">
+            Precisa de Mais Orientações?
+          </h2>
+          <p class="text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
+            Nossa equipe está sempre pronta para esclarecer suas dúvidas
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="bg-white text-primary px-8 py-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-phone mr-2"></i>
+              Falar com Veterinário
+            </button>
+            <button
+              class="bg-secondary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <i class="fas fa-calendar-alt mr-2"></i>
+              Agendar Consulta
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-paw text-primary text-2xl"></i>
+              <span class="text-2xl font-bold text-primary">PetCare</span>
+            </div>
+            <p class="text-muted-foreground">
+              Cuidando do seu melhor amigo com amor e profissionalismo há mais
+              de 15 anos.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Serviços
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="consultas.html"
+                  class="hover:text-primary transition-colors"
+                  >Consultas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="banho-tosa.html"
+                  class="hover:text-primary transition-colors"
+                  >Banho e Tosa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="vacinacao.html"
+                  class="hover:text-primary transition-colors"
+                  >Vacinação</a
+                >
+              </li>
+              <li>
+                <a
+                  href="hotel.html"
+                  class="hover:text-primary transition-colors"
+                  >Hotel</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">
+              Links Úteis
+            </h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <a
+                  href="sobre.html"
+                  class="hover:text-primary transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="blog.html" class="hover:text-primary transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dicas.html"
+                  class="hover:text-primary transition-colors"
+                  >Dicas</a
+                >
+              </li>
+              <li>
+                <a href="faq.html" class="hover:text-primary transition-colors"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-card-foreground mb-4">Contato</h4>
+            <ul class="space-y-2 text-muted-foreground">
+              <li>
+                <i class="fas fa-phone mr-2 text-primary"></i>(11) 3456-7890
+              </li>
+              <li>
+                <i class="fas fa-envelope mr-2 text-primary"></i
+                >contato@petcare.com.br
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>São
+                Paulo, SP
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-border mt-8 pt-8 text-center text-muted-foreground"
+        >
+          <p>&copy; 2024 PetCare. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-primary, .btn-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const originalText = this.innerHTML;
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Carregando...';
+            this.disabled = true;
+
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+          });
+        });
+    </script>
+  </body>
+</html>
